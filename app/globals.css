@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background-light: #fdfdfd;
+  --foreground-light: #0d1cf7;
+
+  --background-dark: #e8fafd; /* full black */
+  --foreground-dark: #0a0a0aef;
+}
+
+body {
+  background: var(--background-light);
+  color: var(--foreground-light);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  min-height: 100vh;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+/* Tailwind dark mode class triggers this */
+.dark body {
+  background: var(--background-dark);
+  color: var(--foreground-dark);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #050505;
+    --foreground: #65f188;
+  }
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 4s ease infinite;
+}
