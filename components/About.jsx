@@ -18,7 +18,7 @@ import {
 
 const stats = [
   {
-    value: "50+",
+    value: "10+",
     label: "Projects Delivered",
   },
   {

@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "components/Education.jsx", "components/Education.jsx", "components/Contact.jsx", "components/Navbar.jsx", "components/Hero.jsx", "components/Experience.jsx", "components/Projects.jsx", "components/About.jsx", "components/Services.jsx"  ],
   "exclude": ["node_modules"]
 }

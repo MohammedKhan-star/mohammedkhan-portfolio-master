@@ -12,7 +12,7 @@ import {
 const education = [
   {
     icon: GraduationCap,
-    year: "2025 – Present",
+    year: "2025 – 2027",
     degree: "Master of Computer Applications",
     institution: "Osmania University",
     description:
@@ -21,8 +21,17 @@ const education = [
   },
   {
     icon: GraduationCap,
-    year: "2025 – Present",
-    degree: "Master of Computer Applications",
+    year: "2022 – 2025",
+    degree: "Full Stack Web Development Software Engineering",
+    institution: "NXTWave Academy Technology Private Limited 4.0",
+    description:
+      "Advanced study in computer applications, software development, databases, artificial intelligence and related areas of computer science.",
+    status: "Currently Pursuing",
+  },
+  {
+    icon: GraduationCap,
+    year: "2018 – 2021",
+    degree: "Bachelor of Science in Computer Science (MECS)",
     institution: "Osmania University",
     description:
       "Advanced study in computer applications, software development, databases, artificial intelligence and related areas of computer science.",
@@ -30,23 +39,15 @@ const education = [
   },
   {
     icon: GraduationCap,
-    year: "2025 – Present",
-    degree: "Master of Computer Applications",
+    year: "2016 – 2018",
+    degree: "Computer Science & Engineering",
     institution: "Osmania University",
     description:
       "Advanced study in computer applications, software development, databases, artificial intelligence and related areas of computer science.",
     status: "Currently Pursuing",
   },
   
-  {
-    icon: GraduationCap,
-    year: "2025 – Present",
-    degree: "Master of Computer Applications",
-    institution: "Osmania University",
-    description:
-      "Advanced study in computer applications, software development, databases, artificial intelligence and related areas of computer science.",
-    status: "Currently Pursuing",
-  },
+  
   {
     icon: Code2,
     year: "Completed",
