@@ -1,220 +1,295 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Menu,
   X,
+  Github,
+  Linkedin,
+  Youtube,
   ArrowUpRight,
 } from "lucide-react";
 
-const navItems = [
+const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Products", href: "#products" },
   { name: "Experience", href: "#experience" },
-  { name: "Blog", href: "#blog" },
+  { name: "Education", href: "#education" },
+  { name: "Achievements", href: "#achievements" },
   { name: "Contact", href: "#contact" },
+];
+
+const socialLinks = [
+
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/mohammed-khan-7905a621a/",
+    icon: Linkedin,
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/@Engineermohammedkhan",
+    icon: Youtube,
+  },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 20);
 
-      const sections = navItems
-        .map((item) => document.querySelector(item.href))
-        .filter(Boolean);
+      let current = "home";
 
-      let currentSection = "home";
+      for (const link of navLinks) {
+        const id = link.href.slice(1);
+        const section = document.getElementById(id);
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 160;
-
-        if (window.scrollY >= sectionTop) {
-          currentSection = section.id;
+        if (
+          section &&
+          section.getBoundingClientRect().top <= 160
+        ) {
+          current = id;
         }
-      });
+      }
 
-      setActiveSection(currentSection);
+      setActiveSection(current);
     };
 
-    window.addEventListener("scroll", handleScroll);
-
     handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const oldOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = oldOverflow;
+      window.removeEventListener(
+        "keydown",
+        handleEscape
+      );
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "py-3"
-          : "py-5"
-      }`}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 px-4 transition-all duration-300 sm:px-6 ${
+          scrolled ? "py-2" : "py-4"
+        }`}
+      >
         <nav
-          className={`relative rounded-2xl border transition-all duration-300 ${
-            scrolled
-              ? "border-cyan-400/20 bg-[#020b14]/90 shadow-2xl shadow-cyan-500/10 backdrop-blur-2xl"
-              : "border-white/10 bg-[#020b14]/70 backdrop-blur-xl"
-          }`}
+          aria-label="Main navigation"
+          className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-4 rounded-2xl border border-cyan-400/15 bg-[#071426]/95 px-4 shadow-xl shadow-black/20 backdrop-blur-xl sm:px-6"
         >
+          {/* Brand */}
+          <Link
+            href="/#home"
+            onClick={closeMenu}
+            className="group flex shrink-0 items-center gap-3"
+          >
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-700 shadow-lg shadow-cyan-500/20 transition-transform group-hover:scale-105">
+              <span className="text-lg font-black text-white">
+                MK
+              </span>
+            </div>
 
-          <div className="flex h-[70px] items-center justify-between px-4 sm:px-5">
+            <div className="hidden min-[380px]:block">
+              <p className="text-sm font-black text-white sm:text-base">
+                Mohammed Khan
+              </p>
 
-            {/* ================= LOGO ================= */}
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-cyan-400">
+                Software Engineer
+              </p>
+            </div>
+          </Link>
 
-            <Link
-              href="#home"
-              onClick={closeMenu}
-              className="group flex items-center gap-3"
-            >
+          {/* Desktop navigation */}
+          <div className="hidden items-center gap-1 2xl:flex">
+            {navLinks.map((link) => {
+              const isActive =
+                activeSection === link.href.slice(1);
 
-              {/* Replace this path with your actual logo path */}
-              <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-cyan-400/20 bg-white/[0.03]">
-                <Image
-                  src="/profile/stackra.png"
-                  alt="STACKRA TECHNOLOGIES"
-                  fill
-                  priority
-                  className="object-contain p-1.5 transition duration-300 group-hover:scale-105"
-                />
-              </div>
+              return (
+                <Link
+                  key={link.name}
+                  href={`/${link.href}`}
+                  aria-current={
+                    isActive ? "location" : undefined
+                  }
+                  className={`rounded-xl px-2.5 py-2 text-xs font-semibold transition-colors ${
+                    isActive
+                      ? "bg-cyan-400/10 text-cyan-300"
+                      : "text-slate-300 hover:bg-white/5 hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </div>
 
-              <div className="hidden leading-none sm:block">
+          {/* Desktop social links */}
+          <div className="hidden items-center gap-2 lg:flex">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
 
-                <p className="text-sm font-black tracking-wide text-white">
-                  MOHAMMED KHAN
-                </p>
+              return (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-400/30 hover:text-cyan-300"
+                >
+                  <Icon size={18} />
+                </a>
+              );
+            })}
+          </div>
 
-                <p className="mt-1 text-[9px] font-bold tracking-[0.25em] text-cyan-400">
-                  FOUNDER • STACKRA
-                </p>
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={
+              menuOpen ? "Close menu" : "Open menu"
+            }
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white 2xl:hidden"
+          >
+            {menuOpen ? (
+              <X size={23} />
+            ) : (
+              <Menu size={23} />
+            )}
+          </button>
+        </nav>
+      </header>
 
-              </div>
+      {/* Mobile and tablet navigation */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 2xl:hidden">
+          {/* Backdrop */}
+          <button
+            type="button"
+            onClick={closeMenu}
+            aria-label="Close navigation"
+            className="absolute inset-0 bg-[#020817]/85 backdrop-blur-sm"
+          />
 
-            </Link>
+          {/* Menu panel */}
+          <div
+            id="mobile-navigation"
+            className="absolute inset-x-4 bottom-4 top-[100px] mx-auto max-w-lg overflow-y-auto rounded-3xl border border-cyan-400/20 bg-[#091628] p-5 shadow-2xl sm:inset-x-6 sm:p-7"
+          >
+            <div className="mb-5 border-b border-white/10 pb-5">
+              <p className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+                Navigation
+              </p>
 
-            {/* ================= DESKTOP NAV ================= */}
+              <h2 className="mt-2 text-2xl font-black text-white">
+                Explore My Portfolio
+              </h2>
+            </div>
 
-            <div className="hidden items-center gap-1 lg:flex">
-
-              {navItems.map((item) => {
-                const isActive = activeSection === item.href.slice(1);
+            {/* Mobile links */}
+            <div className="space-y-1.5">
+              {navLinks.map((link, index) => {
+                const isActive =
+                  activeSection === link.href.slice(1);
 
                 return (
                   <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`relative rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ${
+                    key={link.name}
+                    href={`/${link.href}`}
+                    onClick={closeMenu}
+                    className={`flex items-center justify-between rounded-xl border px-4 py-3 transition-colors ${
                       isActive
-                        ? "text-cyan-400"
-                        : "text-slate-300 hover:bg-white/[0.04] hover:text-white"
+                        ? "border-cyan-400/20 bg-cyan-400/10 text-cyan-300"
+                        : "border-transparent text-slate-300 hover:border-white/10 hover:bg-white/5 hover:text-white"
                     }`}
                   >
-                    {item.name}
+                    <span className="flex items-center gap-4">
+                      <span className="text-xs font-bold text-slate-500">
+                        {String(index + 1).padStart(
+                          2,
+                          "0"
+                        )}
+                      </span>
 
-                    {isActive && (
-                      <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-cyan-400" />
-                    )}
+                      <span className="text-sm font-semibold">
+                        {link.name}
+                      </span>
+                    </span>
+
+                    <ArrowUpRight size={16} />
                   </Link>
                 );
               })}
-
             </div>
 
-            {/* ================= DESKTOP CTA ================= */}
+            {/* Mobile social links */}
+            <div className="mt-7 border-t border-white/10 pt-6">
+              <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">
+                Connect With Me
+              </p>
 
-            <Link
-              href="#contact"
-              className="hidden items-center gap-2 rounded-full bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/20 lg:flex"
-            >
-              Let's Talk
-              <ArrowUpRight size={16} />
-            </Link>
-
-            {/* ================= MOBILE BUTTON ================= */}
-
-            <button
-              type="button"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={
-                menuOpen
-                  ? "Close navigation menu"
-                  : "Open navigation menu"
-              }
-              aria-expanded={menuOpen}
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-400/20 bg-white/[0.03] text-cyan-400 transition hover:bg-cyan-400/10 lg:hidden"
-            >
-              {menuOpen ? (
-                <X size={22} />
-              ) : (
-                <Menu size={22} />
-              )}
-            </button>
-
-          </div>
-
-          {/* ================= MOBILE MENU ================= */}
-
-          {menuOpen && (
-            <div className="border-t border-white/10 px-4 pb-4 pt-3 lg:hidden">
-
-              <div className="flex flex-col gap-1">
-
-                {navItems.map((item) => {
-                  const isActive =
-                    activeSection === item.href.slice(1);
+              <div className="flex gap-3">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
 
                   return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={closeMenu}
-                      className={`rounded-xl px-4 py-3 text-sm font-medium transition ${
-                        isActive
-                          ? "bg-cyan-400/10 text-cyan-400"
-                          : "text-slate-300 hover:bg-white/[0.04] hover:text-white"
-                      }`}
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
+                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-400/30 hover:text-cyan-300"
                     >
-                      {item.name}
-                    </Link>
+                      <Icon size={19} />
+                    </a>
                   );
                 })}
-
-                <Link
-                  href="#contact"
-                  onClick={closeMenu}
-                  className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-300"
-                >
-                  Let's Talk
-                  <ArrowUpRight size={16} />
-                </Link>
-
               </div>
-
             </div>
-          )}
-
-        </nav>
-      </div>
-    </header>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

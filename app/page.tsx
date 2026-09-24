@@ -10,7 +10,7 @@ import Products from "@/components/Products";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
-
+import Achievements from "@/components/Achievements";
 export const metadata = {
   title:
     "Mohammed Khan | Founder & Software Engineer | STACKRA TECHNOLOGIES",
@@ -119,9 +119,13 @@ export default function Home() {
 
         {/* ================= EDUCATION ================= */}
         <Education />
+         {/* ================= ACHIEVEMENTS ================= */}
+        <Achievements />
 
         {/* ================= CONTACT ================= */}
         <Contact />
+
+       
       </main>
 
       <Analytics />
