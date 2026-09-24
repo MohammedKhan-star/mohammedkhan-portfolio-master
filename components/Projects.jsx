@@ -20,7 +20,7 @@ const projects = [
     title: "STACKRA AI",
     description:
       "An intelligent business management platform designed to bring CRM, sales, finance, projects, inventory, reporting and AI assistance into one system.",
-    image: "/projects/stackra-ai.png",
+    image: "/project/stackra-ai.png",
     technologies: [
       "Next.js",
       "JavaScript",
@@ -37,7 +37,7 @@ const projects = [
     title: "STACKRA TECHNOLOGIES",
     description:
       "The official corporate platform for STACKRA TECHNOLOGIES, presenting software development, AI solutions and digital services.",
-    image: "/projects/stackra-technologies.png",
+    image: "/project/stackra.png",
     technologies: [
       "Next.js",
       "React",
@@ -53,7 +53,7 @@ const projects = [
     title: "STACKRA ACADEMY",
     description:
       "An educational platform designed for computer training, courses, learning resources and digital education.",
-    image: "/projects/stackra-academy.png",
+    image: "/project/stackra-acadamy.png",
     technologies: [
       "Next.js",
       "React",
@@ -68,7 +68,7 @@ const projects = [
     title: "CRM & BUSINESS SYSTEMS",
     description:
       "Custom business platforms for managing customers, leads, sales, operations, reporting and day-to-day workflows.",
-    image: "/projects/crm.png",
+    image: "/project/CRM.png",
     technologies: [
       "Next.js",
       "MongoDB",
