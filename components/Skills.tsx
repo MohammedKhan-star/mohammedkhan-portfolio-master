@@ -14,10 +14,12 @@ import {
   Wrench,
   Cpu,
   Monitor,
-  ChevronRight,
+  type LucideIcon,
 } from "lucide-react";
 
-const categoryIcons = {
+type Skill = (typeof skillCategories)[number]["skills"][number];
+
+const categoryIcons: Record<string, LucideIcon> = {
   Frontend: Layers3,
   Backend: Code2,
   Database: Database,
@@ -27,7 +29,7 @@ const categoryIcons = {
   "Other Skills": Monitor,
 };
 
-function SkillCard({ skill }) {
+function SkillCard({ skill }: { skill: Skill }) {
   const [imageError, setImageError] = useState(false);
 
   return (
