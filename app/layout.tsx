@@ -1,111 +1,344 @@
-// app/layout.tsx
-import type { Metadata } from "next";
-import Link from "next/link";
+
+import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 import ThemeWrapper from "./theme-wrapper";
 
+/* =========================================================
+   FOUNDER BRAND CONFIGURATION
+========================================================= */
+
+const siteConfig = {
+  name: "Mohammed Khan",
+
+  title:
+    "Mohammed Khan | Founder & Software Engineer | STACKRA TECHNOLOGIES",
+
+  description:
+    "Official portfolio of Mohammed Khan, Founder of STACKRA TECHNOLOGIES. Building AI-powered applications, modern websites, SaaS platforms, CRM, ERP and intelligent business software.",
+
+  url: "https://www.mohammedkhan.dev",
+
+  company: "STACKRA TECHNOLOGIES",
+
+  companyUrl: "https://stackratechnologies.com",
+
+  image: "/profile/profile3.png",
+
+  social: {
+    github: "https://github.com/MohammedKhan-star",
+
+    linkedin:
+      "https://www.linkedin.com/in/mohammed-khan-7905a621a/",
+
+    youtube:
+      "https://www.youtube.com/@Engineermohammedkhan",
+
+    instagram:
+      "https://www.instagram.com/mohammedkhan.dev/",
+  },
+};
+
+/* =========================================================
+   GLOBAL SEO METADATA
+========================================================= */
 
 export const metadata: Metadata = {
-  /* -------------------- BASIC SEO -------------------- */
-  title: "Mohammad Khan | Full Stack Developer",
-  description:
-    "Mohammad Khan is a Full Stack Developer specializing in MERN stack and Next.js. I build fast, scalable, and modern web applications.",
+  metadataBase: new URL(siteConfig.url),
+
+  applicationName: "Mohammed Khan Portfolio",
+
+  title: {
+    default: siteConfig.title,
+    template: "%s | Mohammed Khan",
+  },
+
+  description: siteConfig.description,
 
   keywords: [
-    "Mohammad Khan",
+    "Mohammed Khan",
+    "Mohammed Khan Founder",
+    "Mohammed Khan Software Engineer",
+    "STACKRA TECHNOLOGIES",
+    "Founder of STACKRA TECHNOLOGIES",
     "Full Stack Developer",
     "MERN Stack Developer",
     "Next.js Developer",
     "React Developer",
     "JavaScript Developer",
-    "Web Developer Portfolio",
-    "Software Engineer",
+    "AI Developer",
+    "AI-Powered Business Software",
+    "SaaS Development",
+    "CRM Development",
+    "ERP Development",
+    "Web Application Development",
+    "Software Development",
+    "Hyderabad Software Developer",
   ],
 
-  authors: [{ name: "Mohammad Khan" }],
-  creator: "Mohammad Khan",
+  authors: [
+    {
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  ],
 
-  /* -------------------- CANONICAL BASE -------------------- */
-  metadataBase: new URL("https://mohammedkhan.dev"),
+  creator: siteConfig.name,
 
-  /* -------------------- OPEN GRAPH -------------------- */
+  publisher: siteConfig.company,
+
+  category: "technology",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  /* =======================================================
+     OPEN GRAPH — LINKEDIN, WHATSAPP, FACEBOOK
+  ======================================================= */
+
   openGraph: {
-    title: "Mohammad Khan | Full Stack Developer",
-    description:
-      "Professional portfolio of Mohammad Khan – MERN & Next.js Developer.",
-    url: "https://mohammedkhan.dev",
-    siteName: "Mohammad Khan Portfolio",
+    type: "profile",
+
+    locale: "en_IN",
+
+    url: siteConfig.url,
+
+    siteName: "Mohammed Khan | Official Portfolio",
+
+    title: siteConfig.title,
+
+    description: siteConfig.description,
+
+    firstName: "Mohammed",
+
+    lastName: "Khan",
+
+    username: "mohammedkhan",
+
     images: [
       {
-        url: "/profile/profile2.png", // MUST be inside /public
+        url: siteConfig.image,
         width: 1200,
         height: 630,
-        alt: "Mohammad Khan Portfolio",
+        alt:
+          "Mohammed Khan — Founder of STACKRA TECHNOLOGIES",
       },
     ],
-    locale: "en_IN",
-    type: "website",
   },
 
-  /* -------------------- TWITTER (X) -------------------- */
+  /* =======================================================
+     TWITTER / X
+  ======================================================= */
+
   twitter: {
     card: "summary_large_image",
-    title: "Mohammad Khan | Full Stack Developer",
-    description:
-      "Professional portfolio of Mohammad Khan – MERN & Next.js Developer.",
-    images: ["/profile/profile2.png"],
+
+    title: siteConfig.title,
+
+    description: siteConfig.description,
+
+    images: [siteConfig.image],
   },
 
-  /* -------------------- ROBOTS -------------------- */
+  /* =======================================================
+     SEARCH ENGINE INDEXING
+  ======================================================= */
+
   robots: {
     index: true,
+
     follow: true,
+
     googleBot: {
       index: true,
+
       follow: true,
+
+      "max-image-preview": "large",
+
+      "max-snippet": -1,
+
+      "max-video-preview": -1,
     },
+  },
+
+  /* =======================================================
+     ADDITIONAL METADATA
+  ======================================================= */
+
+  referrer: "origin-when-cross-origin",
+
+  formatDetection: {
+    email: false,
+
+    address: false,
+
+    telephone: false,
+  },
+
+  other: {
+    "theme-color": "#071426",
   },
 };
 
+/* =========================================================
+   VIEWPORT
+========================================================= */
 
+export const viewport: Viewport = {
+  width: "device-width",
 
+  initialScale: 1,
+
+  themeColor: "#071426",
+};
+
+/* =========================================================
+   STRUCTURED DATA — PERSON
+========================================================= */
+
+const personSchema = {
+  "@context": "https://schema.org",
+
+  "@type": "Person",
+
+  "@id": `${siteConfig.url}/#person`,
+
+  name: siteConfig.name,
+
+  url: siteConfig.url,
+
+  image: `${siteConfig.url}${siteConfig.image}`,
+
+  description: siteConfig.description,
+
+  jobTitle: [
+    "Founder",
+    "Software Engineer",
+    "Full Stack Developer",
+  ],
+
+  worksFor: {
+    "@type": "Organization",
+
+    "@id": `${siteConfig.companyUrl}/#organization`,
+
+    name: siteConfig.company,
+
+    url: siteConfig.companyUrl,
+  },
+
+  founder: {
+    "@type": "Organization",
+
+    "@id": `${siteConfig.companyUrl}/#organization`,
+
+    name: siteConfig.company,
+
+    url: siteConfig.companyUrl,
+  },
+
+  sameAs: [
+    siteConfig.social.github,
+    siteConfig.social.linkedin,
+    siteConfig.social.youtube,
+    siteConfig.social.instagram,
+  ],
+};
+
+/* =========================================================
+   STRUCTURED DATA — WEBSITE
+========================================================= */
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+
+  "@type": "WebSite",
+
+  "@id": `${siteConfig.url}/#website`,
+
+  name: "Mohammed Khan | Official Portfolio",
+
+  url: siteConfig.url,
+
+  description: siteConfig.description,
+
+  inLanguage: "en-IN",
+
+  publisher: {
+    "@id": `${siteConfig.url}/#person`,
+  },
+};
+
+/* =========================================================
+   STRUCTURED DATA — PROFILE PAGE
+========================================================= */
+
+const profileSchema = {
+  "@context": "https://schema.org",
+
+  "@type": "ProfilePage",
+
+  "@id": `${siteConfig.url}/#profile`,
+
+  url: siteConfig.url,
+
+  name: siteConfig.title,
+
+  description: siteConfig.description,
+
+  mainEntity: {
+    "@id": `${siteConfig.url}/#person`,
+  },
+
+  isPartOf: {
+    "@id": `${siteConfig.url}/#website`,
+  },
+};
+
+/* =========================================================
+   ROOT LAYOUT
+========================================================= */
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
+  const structuredData = {
+    "@context": "https://schema.org",
+
+    "@graph": [
+      personSchema,
+      websiteSchema,
+      profileSchema,
+    ],
+  };
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="scroll-smooth"
+    >
       <head>
-        {/* -------- PERSON SCHEMA WITH SOCIAL LINKS -------- */}
+        {/* Founder and portfolio structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Mohammad Khan",
-              url: "https://mohammedkhan.dev",
-              image: "https://mohammedkhan.dev/profile/profile2.png",
-              jobTitle: "Full Stack Developer",
-              sameAs: [
-                "https://wa.me/919542355897", // WhatsApp
-                "https://www.linkedin.com/in/mohammed-khan-7905a621a/",
-                "https://github.com/MohammedKhan-star",
-                "https://www.youtube.com/@Engineermohammedkhan",
-                "https://twitter.com/mohammedkhan_dev",
-                "https://www.instagram.com/mohammedkhan.dev/",
-              ],
-            }),
+            __html: JSON.stringify(structuredData).replace(
+              /</g,
+              "\\u003c"
+            ),
           }}
         />
       </head>
 
-      <body>
-        <ThemeWrapper>{children}</ThemeWrapper>
-      
+      <body className="min-h-screen bg-[#071426] text-slate-100 antialiased">
+        <ThemeWrapper>
+          {children}
+        </ThemeWrapper>
       </body>
     </html>
   );

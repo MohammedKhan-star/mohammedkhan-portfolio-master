@@ -3,14 +3,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  Menu,
-  X,
-  Github,
-  Linkedin,
-  Youtube,
-  ArrowUpRight,
-} from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -25,25 +18,12 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
-const socialLinks = [
-
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/mohammed-khan-7905a621a/",
-    icon: Linkedin,
-  },
-  {
-    name: "YouTube",
-    href: "https://www.youtube.com/@Engineermohammedkhan",
-    icon: Youtube,
-  },
-];
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
+  // Track scroll position and active section
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -76,6 +56,7 @@ export default function Navbar() {
     };
   }, []);
 
+  // Lock body scrolling when mobile menu is open
   useEffect(() => {
     if (!menuOpen) return;
 
@@ -103,6 +84,7 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Main Header */}
       <header
         className={`fixed inset-x-0 top-0 z-50 px-4 transition-all duration-300 sm:px-6 ${
           scrolled ? "py-2" : "py-4"
@@ -135,7 +117,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop navigation */}
+          {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 2xl:flex">
             {navLinks.map((link) => {
               const isActive =
@@ -160,27 +142,7 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Desktop social links */}
-          <div className="hidden items-center gap-2 lg:flex">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-
-              return (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-400/30 hover:text-cyan-300"
-                >
-                  <Icon size={18} />
-                </a>
-              );
-            })}
-          </div>
-
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
@@ -189,7 +151,7 @@ export default function Navbar() {
             }
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white 2xl:hidden"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition-colors hover:border-cyan-400/30 hover:text-cyan-300 2xl:hidden"
           >
             {menuOpen ? (
               <X size={23} />
@@ -200,7 +162,7 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* Mobile and tablet navigation */}
+      {/* Mobile and Tablet Navigation */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 2xl:hidden">
           {/* Backdrop */}
@@ -211,11 +173,12 @@ export default function Navbar() {
             className="absolute inset-0 bg-[#020817]/85 backdrop-blur-sm"
           />
 
-          {/* Menu panel */}
+          {/* Mobile Menu Panel */}
           <div
             id="mobile-navigation"
             className="absolute inset-x-4 bottom-4 top-[100px] mx-auto max-w-lg overflow-y-auto rounded-3xl border border-cyan-400/20 bg-[#091628] p-5 shadow-2xl sm:inset-x-6 sm:p-7"
           >
+            {/* Menu Heading */}
             <div className="mb-5 border-b border-white/10 pb-5">
               <p className="text-xs font-bold uppercase tracking-widest text-cyan-400">
                 Navigation
@@ -226,7 +189,7 @@ export default function Navbar() {
               </h2>
             </div>
 
-            {/* Mobile links */}
+            {/* Mobile Navigation Links */}
             <div className="space-y-1.5">
               {navLinks.map((link, index) => {
                 const isActive =
@@ -237,6 +200,9 @@ export default function Navbar() {
                     key={link.name}
                     href={`/${link.href}`}
                     onClick={closeMenu}
+                    aria-current={
+                      isActive ? "location" : undefined
+                    }
                     className={`flex items-center justify-between rounded-xl border px-4 py-3 transition-colors ${
                       isActive
                         ? "border-cyan-400/20 bg-cyan-400/10 text-cyan-300"
@@ -260,32 +226,6 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-            </div>
-
-            {/* Mobile social links */}
-            <div className="mt-7 border-t border-white/10 pt-6">
-              <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">
-                Connect With Me
-              </p>
-
-              <div className="flex gap-3">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-
-                  return (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.name}
-                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-400/30 hover:text-cyan-300"
-                    >
-                      <Icon size={19} />
-                    </a>
-                  );
-                })}
-              </div>
             </div>
           </div>
         </div>
