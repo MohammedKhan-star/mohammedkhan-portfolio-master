@@ -1,282 +1,292 @@
+
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import {
-  ArrowUpRight,
-  Github,
+  Briefcase,
+  CalendarDays,
+  MapPin,
   ExternalLink,
-  Sparkles,
-  Globe,
+  CheckCircle2,
+  Linkedin,
+  Code2,
   GraduationCap,
-  BarChart3,
+  BookOpen,
 } from "lucide-react";
 
-const projects = [
+const experiences = [
   {
-    featured: true,
-    icon: Sparkles,
-    category: "AI • BUSINESS MANAGEMENT",
-    title: "STACKRA AI",
+    id: 1,
+    role: "Founder and Software Engineer",
+    company: "STACKRA TECHNOLOGIES",
+    period: "Present",
+    location: "Hyderabad, India",
+    type: "Entrepreneurship",
+    current: true,
+    icon: Briefcase,
     description:
-      "An intelligent business management platform designed to bring CRM, sales, finance, projects, inventory, reporting and AI assistance into one system.",
-    image: "/projects/stackra-ai.png",
-    technologies: [
+      "Building innovative software, AI-powered business solutions and modern web applications.",
+    responsibilities: [
+      "Developing STACKRA AI business management platform.",
+      "Building SaaS products and CRM applications.",
+      "Designing and developing modern websites.",
+      "Managing software development and product strategy.",
+    ],
+    skills: [
       "Next.js",
+      "React",
       "JavaScript",
       "MongoDB",
-      "Mongoose",
-      "AI",
+      "Artificial Intelligence",
+      "SaaS",
     ],
-    live: "#",
-    github: "#",
   },
   {
-    icon: Globe,
-    category: "CORPORATE WEBSITE",
-    title: "STACKRA TECHNOLOGIES",
-    description:
-      "The official corporate platform for STACKRA TECHNOLOGIES, presenting software development, AI solutions and digital services.",
-    image: "/projects/stackra-technologies.png",
-    technologies: [
-      "Next.js",
-      "React",
-      "Tailwind CSS",
-      "SEO",
-    ],
-    live: "https://stackratechnologies.com",
-    github: "#",
-  },
-  {
+    id: 2,
+    role: "Computer Department Incharge and Instructor",
+    company: "Madina Tul Uloom High School",
+    period: "2022 – Present",
+    location: "Hyderabad, India",
+    type: "Education",
+    current: true,
     icon: GraduationCap,
-    category: "EDUCATION • LMS",
-    title: "STACKRA ACADEMY",
     description:
-      "An educational platform designed for computer training, courses, learning resources and digital education.",
-    image: "/projects/stackra-academy.png",
-    technologies: [
-      "Next.js",
-      "React",
-      "Tailwind CSS",
+      "Teaching computer science, managing the computer department and helping students develop practical computing skills.",
+    responsibilities: [
+      "Teaching computer fundamentals and programming.",
+      "Managing computer laboratory activities.",
+      "Preparing assignments and examinations.",
+      "Mentoring students in computer technology.",
     ],
-    live: "https://stackratechnologies.com/academy",
-    github: "#",
+    skills: [
+      "Computer Science",
+      "Teaching",
+      "MS Office",
+      "Programming",
+    ],
   },
   {
-    icon: BarChart3,
-    category: "BUSINESS SOFTWARE",
-    title: "CRM & BUSINESS SYSTEMS",
+    id: 3,
+    role: "Exam Coordinator & Computer Trainer",
+    company: "Samdani Computer Training Centre",
+    period: "2021 – Present",
+    location: "Hyderabad, India",
+    type: "Training & Administration",
+    current: true,
+    icon: GraduationCap,
     description:
-      "Custom business platforms for managing customers, leads, sales, operations, reporting and day-to-day workflows.",
-    image: "/projects/crm.png",
-    technologies: [
-      "Next.js",
-      "MongoDB",
-      "REST APIs",
+      "Coordinating examinations and delivering practical computer training.",
+    responsibilities: [
+      "Managing examination coordination.",
+      "Conducting computer training sessions.",
+      "Preparing practical examination materials.",
+      "Supporting students during assessments.",
     ],
-    live: "#",
-    github: "#",
+    skills: [
+      "Exam Coordination",
+      "Computer Training",
+      "Administration",
+      "Student Mentoring",
+    ],
+  },
+  {
+    id: 4,
+    role: "Full Stack Engineer",
+    company: "SkillFied Mentor",
+    period: "Feb 2026 – Mar 2026 · 2 mos",
+    location: "Hyderabad, Telangana, India · Remote",
+    type: "Internship",
+    current: false,
+    icon: Code2,
+    description:
+      "Completed a Full Stack Engineer internship at SkillFied Mentor, focusing on front-end design and JavaScript.",
+    responsibilities: [
+      "Practiced front-end design and development.",
+      "Worked with JavaScript and web development concepts.",
+      "Developed practical full-stack engineering skills.",
+    ],
+    skills: [
+      "Front-End Design",
+      "JavaScript",
+      "Full Stack Engineering",
+    ],
+  },
+  {
+    id: 5,
+    role: "Intensive Training Program",
+    company: "NxtWave",
+    period: "2022 – 2025",
+    location: "India · Online",
+    type: "Professional Training",
+    current: false,
+    icon: BookOpen,
+    description:
+      "Intensive technology training program focused on software development and practical programming skills.",
+    responsibilities: [
+      "Studied software development and programming concepts.",
+      "Practiced problem-solving and coding.",
+      "Developed practical web development skills.",
+      "Completed hands-on learning activities.",
+    ],
+    skills: [
+      "Programming",
+      "Web Development",
+      "Problem Solving",
+      "Software Development",
+    ],
   },
 ];
 
-function ProjectImage({ project }) {
-  if (project.image) {
-    return (
-      <Image
-        src={project.image}
-        alt={`${project.title} project`}
-        width={1000}
-        height={650}
-        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-      />
-    );
-  }
-
-  const Icon = project.icon;
-
-  return (
-    <div className="flex h-full min-h-[260px] items-center justify-center bg-gradient-to-br from-cyan-400/10 via-white/[0.02] to-transparent">
-      <div className="text-center">
-        <Icon
-          size={60}
-          className="mx-auto text-cyan-400"
-        />
-
-        <p className="mt-4 text-sm font-bold uppercase tracking-widest text-slate-400">
-          Project Preview
-        </p>
-      </div>
-    </div>
-  );
-}
-
-export default function Projects() {
+export default function Experience() {
   return (
     <section
-      id="projects"
-      className="relative overflow-hidden border-t border-cyan-400/10 bg-[#020b14] py-24"
+      id="experience"
+      className="relative overflow-hidden bg-slate-950 px-5 py-24 text-white"
     >
-      <div className="pointer-events-none absolute left-1/3 top-1/4 h-96 w-96 rounded-full bg-cyan-500/5 blur-[130px]" />
+      {/* Background effects */}
+      <div className="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="pointer-events-none absolute -right-32 bottom-20 h-80 w-80 rounded-full bg-purple-600/10 blur-3xl" />
 
-        {/* Header */}
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div className="relative mx-auto max-w-6xl">
 
-          <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-bold tracking-[0.3em] text-cyan-400">
-              SELECTED WORK
-            </p>
+        {/* Heading */}
+        <div className="mb-16 text-center">
+          <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-5 py-2 text-sm font-medium text-blue-400">
+            MY CAREER JOURNEY
+          </span>
 
-            <h2 className="text-4xl font-black leading-tight text-white sm:text-5xl">
-              Products & Projects
-              <span className="block text-cyan-400">
-                I've Built
-              </span>
-            </h2>
+          <h2 className="mt-7 text-4xl font-bold md:text-5xl">
+            Professional{" "}
+            <span className="text-blue-500">
+              Experience
+            </span>
+          </h2>
 
-            <p className="mt-5 text-base leading-7 text-slate-400 sm:text-lg">
-              A selection of software, websites and digital products built
-              with modern technologies and real business use cases in mind.
-            </p>
-          </div>
-
-          <Link
-            href="https://github.com/MohammedKhan-star"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300"
-          >
-            View GitHub
-            <ArrowUpRight size={17} />
-          </Link>
-
+          <p className="mx-auto mt-5 max-w-2xl text-slate-400">
+            My journey in software engineering,
+            entrepreneurship, professional training
+            and computer education.
+          </p>
         </div>
 
-        {/* Projects */}
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        {/* Timeline */}
+        <div className="relative">
+          <div className="absolute bottom-0 left-5 top-0 w-px bg-gradient-to-b from-blue-500 via-blue-500/40 to-transparent md:left-7" />
 
-          {projects.map((project) => {
-            const Icon = project.icon;
+          <div className="space-y-10">
+            {experiences.map((exp) => {
+              const Icon = exp.icon;
 
-            return (
-              <article
-                key={project.title}
-                className={`group overflow-hidden rounded-3xl border border-cyan-400/10 bg-white/[0.025] transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30 ${
-                  project.featured ? "lg:col-span-2" : ""
-                }`}
-              >
-
-                {/* Project image */}
+              return (
                 <div
-                  className={`relative overflow-hidden border-b border-white/5 ${
-                    project.featured
-                      ? "h-[320px] sm:h-[430px]"
-                      : "h-[260px]"
-                  }`}
+                  key={exp.id}
+                  className="relative pl-14 md:pl-20"
                 >
-                  <ProjectImage project={project} />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#020b14]/80 via-transparent to-transparent" />
-
-                  <div className="absolute left-5 top-5 rounded-full border border-cyan-400/20 bg-[#020b14]/80 px-3 py-1.5 text-[10px] font-bold tracking-widest text-cyan-400 backdrop-blur">
-                    {project.category}
+                  {/* Timeline icon */}
+                  <div className="absolute left-0 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/40 bg-slate-900 text-blue-400 shadow-lg shadow-blue-500/10 md:left-2">
+                    <Icon size={20} />
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-6 sm:p-8">
+                  {/* Experience card */}
+                  <article className="group rounded-2xl border border-slate-800 bg-slate-900/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 md:p-8">
 
-                  <div className="flex flex-col justify-between gap-6 sm:flex-row">
+                    {/* Role and company */}
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div>
+                        <div className="mb-4 flex flex-wrap gap-2">
+                          <span className="rounded-md bg-blue-500/10 px-3 py-1 text-xs text-blue-400">
+                            {exp.type}
+                          </span>
 
-                    <div className="max-w-2xl">
-
-                      <div className="flex items-center gap-3">
-
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/10 text-cyan-400">
-                          <Icon size={20} />
+                          {exp.current && (
+                            <span className="rounded-md bg-green-500/10 px-3 py-1 text-xs text-green-400">
+                              Current
+                            </span>
+                          )}
                         </div>
 
-                        <h3 className="text-2xl font-black text-white">
-                          {project.title}
+                        <h3 className="text-2xl font-bold transition-colors group-hover:text-blue-400">
+                          {exp.role}
                         </h3>
 
+                        <p className="mt-2 text-lg font-semibold text-blue-400">
+                          {exp.company}
+                        </p>
                       </div>
+                    </div>
 
-                      <p className="mt-4 leading-7 text-slate-400">
-                        {project.description}
-                      </p>
+                    {/* Date and location */}
+                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-400">
+                      <span className="flex items-center gap-2">
+                        <CalendarDays size={16} />
+                        {exp.period}
+                      </span>
 
-                      {/* Technologies */}
-                      <div className="mt-5 flex flex-wrap gap-2">
-                        {project.technologies.map((technology) => (
-                          <span
-                            key={technology}
-                            className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-slate-300"
+                      <span className="flex items-center gap-2">
+                        <MapPin size={16} />
+                        {exp.location}
+                      </span>
+                    </div>
+
+                    <div className="my-6 h-px bg-slate-800" />
+
+                    {/* Description */}
+                    <p className="leading-relaxed text-slate-300">
+                      {exp.description}
+                    </p>
+
+                    {/* Responsibilities */}
+                    <div className="mt-6 space-y-3">
+                      {exp.responsibilities.map(
+                        (item, index) => (
+                          <div
+                            key={index}
+                            className="flex items-start gap-3"
                           >
-                            {technology}
-                          </span>
-                        ))}
-                      </div>
+                            <CheckCircle2
+                              size={18}
+                              className="mt-1 shrink-0 text-blue-500"
+                            />
 
+                            <p className="text-sm leading-relaxed text-slate-400">
+                              {item}
+                            </p>
+                          </div>
+                        )
+                      )}
                     </div>
 
-                    {/* Links */}
-                    <div className="flex shrink-0 items-center gap-3 sm:flex-col sm:items-end">
-
-                      {project.live !== "#" && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300"
+                    {/* Skills */}
+                    <div className="mt-7 flex flex-wrap gap-2">
+                      {exp.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs text-slate-300"
                         >
-                          Live Demo
-                          <ExternalLink size={15} />
-                        </a>
-                      )}
-
-                      {project.github !== "#" && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 px-5 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-cyan-400/50 hover:text-cyan-400"
-                        >
-                          GitHub
-                          <Github size={15} />
-                        </a>
-                      )}
-
+                          {skill}
+                        </span>
+                      ))}
                     </div>
-
-                  </div>
-
+                  </article>
                 </div>
-
-              </article>
-            );
-          })}
-
+              );
+            })}
+          </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-12 text-center">
-
-          <p className="text-sm text-slate-500">
-            Want to build something similar?
-          </p>
-
-          <Link
-            href="#contact"
-            className="mt-3 inline-flex items-center gap-2 text-lg font-bold text-cyan-400 hover:text-cyan-300"
+        {/* LinkedIn button */}
+        <div className="mt-16 text-center">
+          <a
+            href="https://www.linkedin.com/in/mohammed-khan-7905a621a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 rounded-xl bg-blue-600 px-7 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20"
           >
-            Let's discuss your project
-            <ArrowUpRight size={18} />
-          </Link>
-
+            <Linkedin size={20} />
+            View My LinkedIn
+            <ExternalLink size={17} />
+          </a>
         </div>
-
       </div>
     </section>
   );

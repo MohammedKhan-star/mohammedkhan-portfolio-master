@@ -26,7 +26,7 @@ const education = [
     institution: "NXTWave Academy Technology Private Limited 4.0",
     description:
       "Advanced study in computer applications, software development, databases, artificial intelligence and related areas of computer science.",
-    status: "Currently Pursuing",
+    status: "Completed",
   },
   {
     icon: GraduationCap,
@@ -35,7 +35,7 @@ const education = [
     institution: "Osmania University",
     description:
       "Advanced study in computer applications, software development, databases, artificial intelligence and related areas of computer science.",
-    status: "Currently Pursuing",
+    status: "Completed",
   },
   {
     icon: GraduationCap,
@@ -44,7 +44,7 @@ const education = [
     institution: "Osmania University",
     description:
       "Advanced study in computer applications, software development, databases, artificial intelligence and related areas of computer science.",
-    status: "Currently Pursuing",
+    status: "Completed",
   },
   
   
